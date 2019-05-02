@@ -11,6 +11,7 @@ import java.io.*;
 import java.awt.*;
 
 public class MainFrame implements ActionListener {
+    DB data = new DB();
     JLabel title, idLabel, nameLabel, frameLabel,YouLabel, PassLabel;
     JTextField idField, passField, nameF, pasF;
     JButton registerButton, exitButton, backButton, logInButton, wishRegistButton, enterLogButton, backForLogBtn;
@@ -20,24 +21,36 @@ public class MainFrame implements ActionListener {
     JTable table,table1;
     DefaultTableModel model,model1;
 
+
+
     MainFrame(){
         // Frame
+
+
         mainFrame = new JFrame("BCS");
         mainFrame.setBounds(60,7,300,300);
+
         secondFrame = new JFrame("Budget Controlling System");
         secondFrame.setBounds(60,7,500,500);
+
         logInFrame = new JFrame("Enter Your login and password");
         logInFrame.setBounds(60,7,300,300);
+
         frameLabel = new JLabel("Welcome to BCS");
         frameLabel.setBounds(110,70,200,100);
+
         title = new JLabel("Registration Form");
         title.setBounds(60, 7, 200, 30);
+
         idLabel = new JLabel("Name");
         idLabel.setBounds(30, 50, 60, 30);
+
         nameLabel = new JLabel("Password");
         nameLabel.setBounds(30, 85, 60, 30);
+
         YouLabel = new JLabel("Login");
         YouLabel.setBounds(30, 50, 80, 30);
+
         PassLabel = new JLabel("Password");
         PassLabel.setBounds(30, 85, 60, 30);
         //Panel
@@ -69,20 +82,33 @@ public class MainFrame implements ActionListener {
         exitButton = new JButton("Exit");
         exitButton.setBounds(110, 230, 100, 30);
         exitButton.addActionListener(this);
+
+
+
         logInButton = new JButton("Log in");
         logInButton.setBounds(110,200,100,30);
         logInButton.addActionListener(this);
+
+
         wishRegistButton = new JButton("Registrate");
         wishRegistButton.setBounds(110,170,100,30);
         wishRegistButton.addActionListener(this);
+
+
         registerButton = new JButton("Register");
         registerButton.setBounds(110, 230, 100, 30);
         registerButton.addActionListener(this);
+
+
         backButton = new JButton("Back");
         backButton.setBounds(110,170,100,30);
         backButton.addActionListener(this);
+
+
         enterLogButton = new JButton("OK");
         enterLogButton.setBounds(110,170,100,30);
+
+
         backForLogBtn = new JButton("BACK");
         backForLogBtn.setBounds(110,200,100,30);
         backForLogBtn.addActionListener(this);
@@ -126,7 +152,8 @@ public class MainFrame implements ActionListener {
         mainFrame.setVisible(true);
 
 
-    }public void actionPerformed(ActionEvent ae) {
+    }
+    public void actionPerformed(ActionEvent ae) {
 
         if (ae.getSource() == exitButton) {
             System.exit(0);
@@ -155,81 +182,78 @@ public class MainFrame implements ActionListener {
         }
 
         if (ae.getSource() == registerButton) {
+            String err = "";
 
             String name = idField.getText();
             String pass = passField.getText();
 
-            String userLine = findUser(name);
+            User user = data.getUserByName(name);
 
-            if (!userLine.equals("")) {
-
-                if (pass.equals(userLine.substring(userLine.indexOf("#")))) {
-                    JOptionPane.showMessageDialog(idField, "logged in ");
-
-                } else {
-                    JOptionPane.showMessageDialog(idField, "Wrong password ");
-                    return;
-
-                }
+            if (name.equals("") || pass.equals("")) {
+                err = "Fields will not be blank";
             }
 
+            if(name.length() < 3 ){
+                err = "TOO LESS CHAR IN NAME";
+            }
 
-            if (name.equals("") || pass.equals("")) JOptionPane.showMessageDialog(idField, "Fields will not be blank");
-            else {
-                //Storing records in List
-                list.add(new User(name, pass));
-                try {
-                    writeToFile(idField, passField);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            if(user.name.equals(name)){
+                err = "ALREADY EXIST";
+            }
 
+            if(!err.equals("")){
+                JOptionPane.showMessageDialog(idField, err);
+                return;
+            }else {
+                data.saveUserInDB(new User(name, pass));
 
                 // using for DialogBox
                 JOptionPane.showMessageDialog(secondFrame, "Successfully Registered");
                 idField.setText("");
                 passField.setText("");
-                //bg.clearSelection();
-                //secondFrame.setVisible(true);
-
-
+                return;
             }
 
+        }
+        if (ae.getSource() == enterLogButton) {
+            String err = "";
+            String name = idField.getText();
 
+            User user = data.getUserByName(name);
+
+            String pass = passField.getText();
+
+
+            if (name.equals("") || pass.equals("")) {
+                err = "Fields will not be blank";
             }
+
+            if(user.name.equals("")){
+                err = "NOT FOUND";
+            }
+
+            if(!user.pass.equals(pass)){
+                err = "Wrong password ";
+            }
+
+            if (!err.equals("")) {
+                JOptionPane.showMessageDialog(idField, err);
+            } else {
+                JOptionPane.showMessageDialog(idField, "logged in ");
+
+                panel2.setVisible(false);
+                logInFrame.setVisible(false);
+
+
+                // open proj panel
+
+
+                // here
+            }
+
+        }
+
         }//Adding records in List
-    public void writeToFile(JTextField username, JTextField password) throws IOException {
-        BufferedReader in = new BufferedReader(new FileReader("file.txt"));
-        String pass = in.readLine();
-        if (pass.contains("---"+ username.getText() + "#" + password.getText()+"---")) {
-            JOptionPane.showMessageDialog(secondFrame,"Already exists");
-        } else {
-            BufferedWriter out = new BufferedWriter(new FileWriter("file.txt", true));
-
-            out.write("---" + username.getText() + "#" + password.getText() + "---");
-            out.close();
-        }
-    }public String findUser(String name){
-        try{
-            BufferedReader in = new BufferedReader(new FileReader("file.txt"));
-            String user = in.readLine();
-            String nameInFile;
-            while (user != null){
-
-                nameInFile = user.substring(3);
-                System.out.println(nameInFile);
-
-                if(name.equals(nameInFile)){
-                    return user;
-                }
-
-                user = in.readLine();
-            }
-            return "";
-        }catch (IOException e){
-            return "";
-        }
-    }
 
         public static void main (String[]args){
         new MainFrame();

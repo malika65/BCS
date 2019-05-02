@@ -1,0 +1,11 @@
+package com.company;
+
+public class User
+{
+    String name;
+    String pass;
+    User(String name,String pass) {
+        this.pass = pass;
+        this.name = name;
+    }
+}
