@@ -2,6 +2,7 @@ package com.company;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.Arrays;
 
 public class DB {
     final private String FILE_NAME = "file.txt";
@@ -14,10 +15,10 @@ public class DB {
                 line = line.replace("@", "");
                 String[] m = line.split("#");
                 if(m[0].equals(userName)){
+
                     return new User(m[0], m[1]);
                 }
             }
-
         }catch (IOException e){
             System.out.println(e.getMessage());
         }

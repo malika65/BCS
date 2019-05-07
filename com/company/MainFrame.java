@@ -10,7 +10,7 @@ import java.util.*;
 import java.io.*;
 import java.awt.*;
 
-public class MainFrame implements ActionListener {
+public class MainFrame extends BCS implements ActionListener {
     DB data = new DB();
     JLabel title, idLabel, nameLabel, frameLabel,YouLabel, PassLabel;
     JTextField idField, passField, nameF, pasF;
@@ -107,6 +107,7 @@ public class MainFrame implements ActionListener {
 
         enterLogButton = new JButton("OK");
         enterLogButton.setBounds(110,170,100,30);
+        enterLogButton.addActionListener(this);
 
 
         backForLogBtn = new JButton("BACK");
@@ -217,19 +218,20 @@ public class MainFrame implements ActionListener {
         }
         if (ae.getSource() == enterLogButton) {
             String err = "";
-            String name = idField.getText();
+            String name = nameF.getText();
 
             User user = data.getUserByName(name);
 
-            String pass = passField.getText();
+            System.out.println(user.toString());
+            String pass = pasF.getText();
 
 
             if (name.equals("") || pass.equals("")) {
-                err = "Fields will not be blank";
+                err = "Fields  not be blank";
             }
 
             if(user.name.equals("")){
-                err = "NOT FOUND";
+                err = user.name + "Empty ";
             }
 
             if(!user.pass.equals(pass)){
@@ -243,9 +245,14 @@ public class MainFrame implements ActionListener {
 
                 panel2.setVisible(false);
                 logInFrame.setVisible(false);
+                frame.setVisible(true);
+
+
 
 
                 // open proj panel
+                new BCS();
+
 
 
                 // here
@@ -253,7 +260,9 @@ public class MainFrame implements ActionListener {
 
         }
 
-        }//Adding records in List
+        }
+
+        //Adding records in List
 
         public static void main (String[]args){
         new MainFrame();

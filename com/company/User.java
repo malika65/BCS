@@ -8,4 +8,9 @@ public class User
         this.pass = pass;
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return name + " jfdhk "  + pass;
+    }
 }
