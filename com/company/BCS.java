@@ -8,8 +8,8 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class BCS {
-    JTextField transport1,  culture1,selfDevelop1,clothes1, life1, nutrition1, household1;
-    JLabel  transport, household, nutrition, life, clothes, selfDevelop, culture , msgLabel;
+    JTextField transport1,  culture1,selfDevelop1,clothes1, life1, nutrition1, household1, budField;
+    JLabel  transport, household, nutrition, life, clothes, selfDevelop, culture , msgLabel , budgetLbael;
     JButton btnSubmit, btnCancel, btnBack;
     public JFrame frame;
     TestDraw draw;
@@ -21,11 +21,11 @@ public class BCS {
 
     BCS(){
         frame = new JFrame();
-        frame.setBounds(60,7,500,500);
+        frame.setBounds(60,7,600,500);
 
 
         panel = new JPanel();
-        panel.setSize(500,500);
+        panel.setSize(600,500);
         panel.setLayout(null);
 
 
@@ -54,7 +54,9 @@ public class BCS {
         culture.setBounds(30,325,100,30);
         culture.setForeground(Color.PINK);
         msgLabel = new JLabel();
-        msgLabel.setBounds(255,100,300,300);
+        msgLabel.setBounds(255,100,300,400);
+        budgetLbael = new JLabel("Enter your budget");
+        budgetLbael.setBounds(80,40,200,30);
 
         //Fiels
         transport1 = new JTextField();
@@ -71,6 +73,9 @@ public class BCS {
         selfDevelop1.setBounds(150,285,100,30);
         culture1 = new JTextField();
         culture1.setBounds(150,325,100,30);
+
+        budField = new JTextField();
+        budField.setBounds(200,40,100,30);
 
         //Buttons
         btnSubmit = new JButton("Submit");
@@ -96,6 +101,8 @@ public class BCS {
         panel.add(clothes);
         panel.add(selfDevelop);
         panel.add(culture);
+        panel.add(budgetLbael);
+        panel.add(budField);
 
         panel.add(msgLabel);
 
@@ -129,6 +136,8 @@ public class BCS {
                 int selfd = Integer.parseInt(selfDevelop1.getText());
                 int cul = Integer.parseInt(culture1.getText());
 
+                int budget = Integer.parseInt(budField.getText());
+
 
                 int total = tran + hous + nutr + lif + clot + selfd + cul ;
 
@@ -136,14 +145,17 @@ public class BCS {
                 Integer[] values = {total,tran,hous,nutr,lif,clot,selfd,cul};
             Integer[] values1 = {tran,hous,nutr,lif,clot,selfd,cul};
             int max = Collections.max(Arrays.asList(values1));
-            msgLabel.setText("YOU SPENT A LOT OF MONEY FOR: "+ max);
-            String transProc = Double.toString(Math.round(((tran*100)/total)*100.0)/100.0);
-                String housProc = Double.toString(Math.round(((hous*100)/total)*100.0)/100.0);
-                String nutrProc = Double.toString(Math.round(((nutr*100)/total)*100.0)/100.0);
-                String lifeProc = Double.toString(Math.round(((lif*100)/total)*100.0)/100.0);
-                String clotProc = Double.toString(Math.round(((clot*100)/total)*100.0)/100.0);
-                String selfdProc = Double.toString(Math.round(((selfd*100)/total)*100.0)/100.0);
-                String cultProc = Double.toString(Math.round(((cul*100)/total)*100.0)/100.0);
+            int remainder = budget - total;
+            if (remainder > 0 ){
+                msgLabel.setText("Budget balance: "+ remainder);
+            }else {msgLabel.setText("Budget balance: "+ remainder + "\n" +"You need to cut costs ");}
+                String transProc = Double.toString(Math.round(((tran*100.0)/total)*100.0)/100.0);
+                String housProc = Double.toString(Math.round(((hous*100.0)/total)*100.0)/100.0);
+                String nutrProc = Double.toString(Math.round(((nutr*100.0)/total)*100.0)/100.0);
+                String lifeProc = Double.toString(Math.round(((lif*100.0)/total)*100.0)/100.0);
+                String clotProc = Double.toString(Math.round(((clot*100.0)/total)*100.0)/100.0);
+                String selfdProc = Double.toString(Math.round(((selfd*100.0)/total)*100.0)/100.0);
+                String cultProc = Double.toString(Math.round(((cul*100.0)/total)*100.0)/100.0);
 
                 transport1.setText(transProc+"%");
                 household1.setText(housProc+"%");

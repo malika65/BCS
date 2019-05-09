@@ -36,8 +36,8 @@ public class MainFrame extends BCS implements ActionListener {
         logInFrame = new JFrame("Enter Your login and password");
         logInFrame.setBounds(60,7,300,300);
 
-        frameLabel = new JLabel("Welcome to BCS");
-        frameLabel.setBounds(110,70,200,100);
+        frameLabel = new JLabel("Welcome to Budget Controling System");
+        frameLabel.setBounds(30,70,250,100);
 
         title = new JLabel("Registration Form");
         title.setBounds(60, 7, 200, 30);
@@ -96,7 +96,7 @@ public class MainFrame extends BCS implements ActionListener {
 
 
         registerButton = new JButton("Register");
-        registerButton.setBounds(110, 230, 100, 30);
+        registerButton.setBounds(110, 200, 100, 30);
         registerButton.addActionListener(this);
 
 
