@@ -4,8 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
-import java.util.Collections;
+
 
 public class BCS {
     JTextField transport1,  culture1,selfDevelop1,clothes1, life1, nutrition1, household1, budField;
@@ -143,8 +142,6 @@ public class BCS {
 
                 initComponents();
                 Integer[] values = {total,tran,hous,nutr,lif,clot,selfd,cul};
-            Integer[] values1 = {tran,hous,nutr,lif,clot,selfd,cul};
-            int max = Collections.max(Arrays.asList(values1));
             int remainder = budget - total;
             if (remainder > 0 ){
                 msgLabel.setText("Budget balance: "+ remainder);

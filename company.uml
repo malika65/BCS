@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.company</OriginalElement>
+  <nodes>
+    <node x="307.2045708244981" y="781.1566300236884">com.company.BCS.BackListener</node>
+    <node x="1245.0" y="0.0">com.company.TestDraw</node>
+    <node x="607.795429175502" y="782.2589154359373">com.company.BCS.LoginListener</node>
+    <node x="238.0" y="1433.0">com.company.DB</node>
+    <node x="0.0" y="1433.0">com.company.User</node>
+    <node x="2.2045708244980915" y="786.6680570849335">com.company.BCS.CancelListener</node>
+    <node x="494.5000000000001" y="-41.88684566546316">com.company.BCS</node>
+    <node x="916.102285412249" y="677.2502790694786">com.company.MainFrame</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.company.BCS.LoginListener" target="com.company.BCS">
+      <point x="0.0" y="-25.5" />
+      <point x="752.5" y="633.0" />
+      <point x="626.375" y="633.0" />
+      <point x="26.375" y="301.5" />
+    </edge>
+    <edge source="com.company.BCS.BackListener" target="com.company.BCS">
+      <point x="0.0" y="-25.5" />
+      <point x="447.5" y="633.0" />
+      <point x="573.625" y="633.0" />
+      <point x="-26.375" y="301.5" />
+    </edge>
+    <edge source="com.company.BCS.CancelListener" target="com.company.BCS">
+      <point x="0.0" y="-25.5" />
+      <point x="142.5" y="623.0" />
+      <point x="520.875" y="623.0" />
+      <point x="-79.125" y="301.5" />
+    </edge>
+    <edge source="com.company.MainFrame" target="com.company.BCS">
+      <point x="0.0" y="-367.5" />
+      <point x="1057.5" y="623.0" />
+      <point x="679.125" y="623.0" />
+      <point x="79.125" y="301.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9072060547001769" x="685.7178192310441" y="725.3102050704908" />
+  <SelectedNodes>
+    <node>com.company.MainFrame</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

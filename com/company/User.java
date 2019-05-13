@@ -11,6 +11,6 @@ public class User
 
     @Override
     public String toString() {
-        return name + " jfdhk "  + pass;
+        return name + " "  + pass;
     }
 }

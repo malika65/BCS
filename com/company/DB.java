@@ -1,8 +1,6 @@
 package com.company;
 
-import javax.swing.*;
 import java.io.*;
-import java.util.Arrays;
 
 public class DB {
     final private String FILE_NAME = "file.txt";

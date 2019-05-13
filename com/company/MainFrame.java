@@ -1,13 +1,6 @@
 package com.company;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.util.List;
 import java.awt.event.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.*;
-import java.io.*;
 import java.awt.*;
 
 public class MainFrame extends BCS implements ActionListener {
@@ -17,9 +10,7 @@ public class MainFrame extends BCS implements ActionListener {
     JButton registerButton, exitButton, backButton, logInButton, wishRegistButton, enterLogButton, backForLogBtn;
     JPanel panel1,panel2,panel3;
     JFrame mainFrame, secondFrame, logInFrame;
-    List<User> list = new ArrayList<User>();
-    JTable table,table1;
-    DefaultTableModel model,model1;
+
 
 
 
@@ -140,15 +131,7 @@ public class MainFrame extends BCS implements ActionListener {
         secondFrame.setDefaultCloseOperation(secondFrame.EXIT_ON_CLOSE);
         secondFrame.setContentPane(panel3);
 
-        /*backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                secondFrame.setVisible(false);
-            }
-        });*/
 
-
-        //panel.setVisible(true);
 
         mainFrame.setVisible(true);
 
